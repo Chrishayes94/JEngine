@@ -5,10 +5,13 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics2D;
 import java.awt.image.BufferStrategy;
+import java.util.ArrayList;
+import java.util.HashMap;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import core.graphics.sprites.Sprite;
 import core.handlers.ButtonHandler;
 import core.player.Player;
 import core.world.Instances;
@@ -26,7 +29,14 @@ public class GameCanvas extends JFrame {
 	public static int WIDTH = 1366;
 	public static int HEIGHT = 800;
 	
+	// Layer sprites by value
+	HashMap<Integer, ArrayList<Sprite>> map;
+	
 	public GameCanvas() {
+		
+		// Setup local variables
+		map = new HashMap<Integer, ArrayList<Sprite>>();
+		
 		this.setTitle("Testing Engine");
 		
 		panel = (JPanel) this.getContentPane();
@@ -59,32 +69,13 @@ public class GameCanvas extends JFrame {
 		// Wipe the previous information
 		g2D.clearRect(0, 0, WIDTH, HEIGHT);
 		
-		for (int x = 0; x < WIDTH; x += 32) {
-			for (int y = 0; y < HEIGHT; y += 32) {
-				g2D.drawImage(Instances.sheetLoader.getSpriteSheet(1).getSprites()[10].getSprite(), x, y, this);
-			}
-		}
-		
-		int x = 128;
-		int y = 32;
-		for (int i = 0; i < Instances.sheetLoader.getSpriteSheet(0).getSprites().length; i++) {
-			g2D.drawImage(Instances.sheetLoader.getSpriteSheet(0).getSprites()[i].getSprite(), x, y, this);
-			
-			x += 32;
-			if (x > 608) {
-				x = 128;
-				y += 32;
-			}
-		}
-		x = 608;
-		y = 32;
-		for (int i = 0; i < Instances.sheetLoader.getSpriteSheet(1).getSprites().length; i++){
-			g2D.drawImage(Instances.sheetLoader.getSpriteSheet(1).getSprites()[i].getSprite(), x, y, this);
-			
-			x += 32;
-			if (x > 1152) {
-				x = 672;
-				y += 32;
+		// Load all the sprites in the correct order
+		if (!map.isEmpty()) {
+			for (int i = 0; i < 10; i++) {
+				ArrayList<Sprite> spriteLayer = map.get(i);
+				for (Sprite spr : spriteLayer) {
+					g2D.drawImage(spr.getSprite(), spr.getX(), spr.getY(), this);
+				}
 			}
 		}
 		
@@ -107,5 +98,9 @@ public class GameCanvas extends JFrame {
 		
 		g2D.dispose();
 		bs.show();
+	}
+	
+	public void addSprite(int layout, int spritesheetIndex, Sprite sprite) {
+		
 	}
 }

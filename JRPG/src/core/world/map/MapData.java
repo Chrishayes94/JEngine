@@ -19,7 +19,7 @@ public class MapData {
 			
 			int i;
 			while ((i = fin.read()) != -1) {
-				out.write(streamIn(i));
+				out.write((byte)i);
 				out.flush();
 			}
 			
@@ -39,7 +39,7 @@ public class MapData {
 			
 			int i;
 			while ((i = in.read()) != -1) {
-				fout.write(streamOut(i));
+				fout.write((byte)i);
 				fout.flush();
 			}
 			

@@ -1,4 +1,4 @@
-package core.graphics.spritess;
+package core.graphics.sprites;
 
 import java.awt.image.BufferedImage;
 

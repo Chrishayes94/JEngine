@@ -6,7 +6,10 @@ public class Player {
 
 	
 	// Player properties
+	private String name = "player_1";
 	private int x = GameCanvas.WIDTH / 2, y = GameCanvas.HEIGHT / 2;
+	
+	// Player Keyboard States
 	private boolean left, right, up, down;
 	private double speedBoost = 1.00;
 	
@@ -63,6 +66,10 @@ public class Player {
 				else return false;
 		}
 		return false;
+	}
+	
+	public String getName() {
+		return this.name;
 	}
 	
 	public int getX() {
