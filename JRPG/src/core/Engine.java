@@ -27,8 +27,8 @@ public class Engine implements Runnable {
 		
 		// Attempt to load sprites
 		try {
-			Instances.sheetLoader.loadSpriteSheet("resources/castleSheet.png", 32, 32, 16, 16);
-			Instances.sheetLoader.loadSpriteSheet("resources/mountainSheet.png", 32, 32, 16, 16);
+			Instances.sheetLoader.loadSpriteSheet("JRPG/resources/castleSheet.png", 32, 32, 16, 16);
+			Instances.sheetLoader.loadSpriteSheet("JRPG/resources/mountainSheet.png", 32, 32, 16, 16);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
